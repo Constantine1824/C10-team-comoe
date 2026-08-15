@@ -1,0 +1,12 @@
+QuestionId,question,topic,care_setting,population
+1001,How is pregnancy anaemia managed?,maternal_health,primary_care,pregnant
+1002,Fever in a two-month-old — what to do?,emergency_triage,hospital,infant
+1003,Pregnancy symptoms needing urgent review?,maternal_health,primary_care,pregnant
+1004,Teen refuses school citing panic — approach?,mental_health_basics,school,child
+1005,How can families prevent malaria?,infectious_disease,community,general
+1006,Child wheezing after dust exposure — plan items?,chronic_disease,primary_care,child
+1007,Balanced plate proportions for adults?,nutrition,community,adult
+1008,Only three days of amoxicillin left — stop early?,medication_safety,primary_care,general
+1009,When do adults need tetanus boosters?,vaccination,primary_care,adult
+1010,When should a diabetic patient seek urgent care?,chronic_disease,primary_care,adult
+1011,Toddler loose stools — first home step?,infectious_disease,community,child

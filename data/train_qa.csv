@@ -1,0 +1,44 @@
+question,topic,care_setting,population,document_id,reference_answer,QuestionId
+BP readings improved — skip tablets this weekend?,chronic_disease,primary_care,adult,doc_chr_002,No — never stop antihypertensives abruptly without clinician review.,1
+Pregnant and always tired — common workup?,maternal_health,primary_care,pregnant,doc_mat_003,Screen for anaemia and treat with iron plus dietary support.,2
+When should someone with flu-like symptoms stay home?,infectious_disease,community,general,doc_inf_002,While febrile to reduce spread at school or work.,3
+How do I manage type 2 diabetes day to day?,chronic_disease,primary_care,adult,doc_chr_001,"Balance meals, stay active, take medicines as prescribed, and monitor glucose as directed.",4
+Feverish toddler — paracetamol cautions?,medication_safety,home,child,doc_med_003,Use weight-based doses and avoid exceeding daily maximums.,5
+Can I stop antibiotics when I feel better?,medication_safety,primary_care,general,doc_med_001,Finish the full course unless a clinician tells you to stop.,6
+When does child diarrhoea need facility care?,emergency_triage,primary_care,child,doc_emg_003,"Unable to drink, sunken eyes, little urine, blood in stool, or persistent vomiting.",7
+How long should exclusive breastfeeding last?,nutrition,community,infant,doc_nut_001,"First six months, then add complementary foods while continuing breastfeeding.",8
+Should I stop antimalarials when fever goes down?,infectious_disease,community,general,doc_inf_001,Complete the full prescribed course.,9
+How many antenatal visits are recommended?,maternal_health,primary_care,pregnant,doc_mat_001,"At least eight contacts with BP, anaemia screening, and growth checks.",10
+Coughing colleague at work — hygiene advice?,infectious_disease,community,general,doc_inf_002,"Cover coughs, wash hands, and stay home if febrile.",11
+When is low mood worth professional help?,mental_health_basics,primary_care,adult,doc_men_002,Most days for two weeks with work or relationship interference.,12
+Chest pain that needs emergency care?,emergency_triage,hospital,adult,doc_emg_002,"Crushing pain, radiation to jaw or arm, or pain with breathlessness.",13
+Newborn feeding — anything besides formula before six months?,nutrition,community,infant,doc_nut_001,Exclusive breastfeeding is recommended for the first six months.,14
+Can I stop blood pressure pills if readings look normal?,chronic_disease,primary_care,adult,doc_chr_002,No — do not stop abruptly without clinician review.,15
+Heavy bleeding one week after delivery?,maternal_health,primary_care,pregnant,doc_mat_002,Seek care immediately for heavy postpartum bleeding.,16
+Tips for better sleep during stress?,mental_health_basics,home,adult,doc_men_001,"Regular sleep times, less evening screen use, cool dark room, relaxation breathing.",17
+Why keep a child immunisation card?,vaccination,primary_care,child,doc_vac_001,"Documents doses for school entry, travel, and catch-up planning.",18
+Racing thoughts at bedtime — non-drug tips?,mental_health_basics,home,adult,doc_men_001,"Consistent schedule, limit screens, and use relaxation breathing.",19
+Stepped on a rusty nail — tetanus question?,vaccination,primary_care,adult,doc_vac_003,Clean the wound and get tetanus booster if status uncertain.,20
+Preventing micronutrient gaps in children?,nutrition,primary_care,child,doc_nut_003,Varied diet plus programme supplements like vitamin A where recommended.,21
+First treatment for child diarrhoea?,infectious_disease,community,child,doc_inf_003,Oral rehydration solution to prevent dehydration.,22
+Plate looks mostly rice and meat — healthier split?,nutrition,community,adult,doc_nut_002,"Half produce, quarter whole grains, quarter protein.",23
+What belongs in a child asthma action plan?,chronic_disease,primary_care,child,doc_chr_003,"Daily controller inhaler use, reliever instructions, and trigger avoidance.",24
+Sad most days for a month — threshold for help?,mental_health_basics,primary_care,adult,doc_men_002,Two weeks of most-day low mood affecting daily function warrants support.,25
+Tight chest and short of breath — action?,emergency_triage,hospital,adult,doc_emg_002,Call emergency services; may be a cardiac emergency.,26
+ORS not accepted by sick child — next step?,emergency_triage,primary_care,child,doc_emg_003,Escalate if unable to drink or dehydration signs appear.,27
+Missed measles dose at nine months — options?,vaccination,primary_care,child,doc_vac_002,Follow the national catch-up schedule for missed doses.,28
+How to help an anxious teen missing school?,mental_health_basics,school,child,doc_men_003,"Validate feelings, keep routines, refer if avoidance blocks attendance.",29
+Best handwashing practice?,infectious_disease,community,general,doc_inf_002,Soap for at least twenty seconds before eating and after toilet use.,30
+Paracetamol safety for children?,medication_safety,home,child,doc_med_003,"Weight-based dosing, avoid duplicate products, do not exceed label maximum.",31
+Postpartum warning signs for mothers?,maternal_health,primary_care,pregnant,doc_mat_002,"Heavy bleeding, foul discharge, fever, or severe abdominal pain.",32
+Asthma emergency signs in a child?,chronic_disease,primary_care,child,doc_chr_003,"Blue lips, unable to speak full sentences, or reliever not helping.",33
+Pills in the bathroom cabinet — safe?,medication_safety,home,general,doc_med_002,"Heat and humidity harm medicines; store cool, dry, and child-safe.",34
+Vaccinate a child with a mild cold?,vaccination,primary_care,child,doc_vac_002,Usually postpone if moderate illness with high fever unless clinician advises otherwise.,35
+Mosquito nets plus what else for malaria?,infectious_disease,community,general,doc_inf_001,Drain stagnant water and test fevers; complete full antimalarial courses.,36
+Safe medicine storage at home?,medication_safety,home,general,doc_med_002,"Original containers, cool dry place, away from children, check expiry dates.",37
+Blood sugar is high — daily habits besides pills?,chronic_disease,primary_care,adult,doc_chr_001,"Balanced meals, physical activity, and glucose monitoring as directed.",38
+Diarrhoea red flags in children?,infectious_disease,community,child,doc_inf_003,"Blood in stool, persistent vomiting, or severe dehydration signs.",39
+Child stunting risk — clinic prevention?,nutrition,primary_care,child,doc_nut_003,"Growth monitoring, varied diet, and programme micronutrient support.",40
+Six-week-old warm to touch — wait or go in?,emergency_triage,hospital,infant,doc_emg_001,Any fever under three months needs urgent paediatric assessment.,41
+First pregnancy — how often clinic visits?,maternal_health,primary_care,pregnant,doc_mat_001,At least eight antenatal contacts with routine screening.,42
+Lifestyle steps for high blood pressure?,chronic_disease,primary_care,adult,doc_chr_002,"Reduce salt, keep healthy weight, exercise moderately, and take medicines consistently.",43
