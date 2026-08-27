@@ -1,0 +1,16 @@
+Management of Type 2 Diabetes in Adults
+
+Diagnosis
+Type 2 diabetes is diagnosed using fasting plasma glucose, HbA1c, or an oral glucose tolerance test. An HbA1c of 6.5% or higher on two separate tests confirms the diagnosis in most adults.
+
+First-Line Pharmacological Therapy
+Metformin remains first-line therapy for most adults with type 2 diabetes unless contraindicated. It should be initiated at diagnosis alongside lifestyle intervention, unless the patient has significant renal impairment or another contraindication. Consider a lower starting dose and slower titration in patients with mild renal impairment to reduce gastrointestinal side effects.
+
+Renal Considerations
+Metformin should not be initiated in patients with an eGFR below 30 mL/min/1.73m2. In patients with eGFR between 30 and 45, use a reduced dose and monitor renal function every three to six months. Metformin should be temporarily withheld in patients undergoing procedures involving iodinated contrast media, and renal function should be reassessed before restarting.
+
+Monitoring
+HbA1c should be monitored every three to six months until stable, then at least annually. Renal function and vitamin B12 levels should be checked periodically in patients on long-term metformin therapy, as prolonged use is associated with vitamin B12 deficiency in a subset of patients.
+
+When to Escalate Therapy
+If HbA1c remains above target after three months of metformin monotherapy at a tolerated dose, consider adding a second agent based on patient comorbidities, such as an SGLT2 inhibitor in patients with cardiovascular or renal disease, or a GLP-1 receptor agonist in patients with obesity.

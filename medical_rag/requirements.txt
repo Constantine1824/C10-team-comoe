@@ -1,0 +1,6 @@
+pdfplumber>=0.11
+sentence-transformers>=3.0
+faiss-cpu>=1.8
+rank_bm25>=0.2.2
+numpy>=1.26
+reportlab>=4.0  # only needed for data/sample/make_sample_pdf.py
