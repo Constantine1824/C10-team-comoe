@@ -1,5 +1,5 @@
 import torch
-from transformers import AutoProcessor, AutoModelForImageToText, BitsAndBytesConfig
+from transformers import AutoProcessor, AutoModelForImageTextToText, BitsAndBytesConfig
 from peft import LoraConfig
 from trl import SFTConfig
 
@@ -20,7 +20,7 @@ MODEL_KWARGS['quantization_config'] = BitsAndBytesConfig(
     bnb_4bit_quant_type='nf4',
 )
 
-MODEL = AutoModelForImageToText.from_pretrained(MODEL_ID, **MODEL_KWARGS)
+MODEL = AutoModelForImageTextToText.from_pretrained(MODEL_ID, **MODEL_KWARGS)
 processor = AutoProcessor.from_pretrained(MODEL_ID)
 processor.tokenizer.padding_side = 'right'
 
