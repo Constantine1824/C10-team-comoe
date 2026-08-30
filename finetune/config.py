@@ -49,8 +49,8 @@ sft_config = SFTConfig(
     learning_rate=2e-4,
     bf16=True,
     max_grad_norm=0.3,
-    warmup_ratio=0.03,
     lr_scheduler_type='linear',
+    dataset_kwargs={'skip_prepare_dataset': True},
     remove_unused_columns=False,
     label_names=['labels']
 )

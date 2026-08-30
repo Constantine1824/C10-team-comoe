@@ -2,6 +2,7 @@ import torch
 from trl import SFTTrainer
 from .config import peft_config, sft_config, processor, MODEL
 from transformers import pipeline
+from datasets import Dataset
 
 def collate_fn(data:list[dict[str, str]]):
     texts = []
@@ -10,15 +11,17 @@ def collate_fn(data:list[dict[str, str]]):
             add_generation_prompt=False,
             tokenize=False).strip())
     batch = processor(texts=texts, return_tensors='pt', padding=True)
+    batch['labels'] = batch['input_ids'].clone()
+    batch['labels'][batch['labels'] == processor.tokenizer.pad_token_id] = -100
     return batch
 
-def train(data:list[dict[str, str]]):
+def finetune(data:Dataset):
     trainer = SFTTrainer(
         model=MODEL,
         train_dataset=data,
         data_collator=collate_fn,
         peft_config=peft_config,
-        sft_config=sft_config,
+        args=sft_config,
     )
     trainer.train()
     return trainer
