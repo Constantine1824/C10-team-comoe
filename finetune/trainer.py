@@ -32,7 +32,7 @@ def run_inference(trainer,test_data):
         processor=processor,
         torch_dtype=torch.bfloat16)
     pipe.model.generation_config.pad_token_id = processor.tokenizer.eos_token_id
-    processor.tokenzer.padding_side = 'left'
+    processor.tokenizer.padding_side = 'left'
     results = pipe(
         text=test_data['messages'],
         batch_size=64,
