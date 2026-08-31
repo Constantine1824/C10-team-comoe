@@ -27,7 +27,7 @@ def format_train_data(data: DataFrame) -> dict[str, str]:
         },
         {
             'role': 'assistant',
-            'content': f'Answer:{data['reference_answer']}'
+            'content': f"Answer:{data['reference_answer']}"
         },
     ]
     return formatted

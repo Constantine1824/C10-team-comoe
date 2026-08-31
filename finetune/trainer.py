@@ -10,7 +10,7 @@ def collate_fn(data:list[dict[str, str]]):
         texts.append(processor.apply_chat_template(item['messages'],
             add_generation_prompt=False,
             tokenize=False).strip())
-    batch = processor(texts=texts, return_tensors='pt', padding=True)
+    batch = processor(text=texts, return_tensors='pt', padding=True)
     batch['labels'] = batch['input_ids'].clone()
     batch['labels'][batch['labels'] == processor.tokenizer.pad_token_id] = -100
     return batch
