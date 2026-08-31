@@ -15,6 +15,16 @@ def collate_fn(data:list[dict[str, str]]):
     batch['labels'][batch['labels'] == processor.tokenizer.pad_token_id] = -100
     return batch
 
+def collate_fn_inf(data:list[dict[str, str]]):
+    texts = [
+        processor.apply_chat_template(item['messages'],
+            add_generation_prompt=True,
+            tokenize=False).strip()
+        for item in data
+    ]
+    return processor(text=texts, return_tensors='pt', padding=True)
+
+
 def finetune(data:Dataset):
     trainer = SFTTrainer(
         model=MODEL,
@@ -26,15 +36,23 @@ def finetune(data:Dataset):
     trainer.train()
     return trainer
 
-def run_inference(trainer,test_data):
-    pipe = pipeline('image-text-to-text',
-        model=trainer.model,
-        processor=processor,
-        torch_dtype=torch.bfloat16)
-    pipe.model.generation_config.pad_token_id = processor.tokenizer.eos_token_id
+def evaluate(trainer,test_data, batch_size=8, max_new_tokens=256):
+    model = trainer.model
+    model.eval()
     processor.tokenizer.padding_side = 'left'
-    results = pipe(
-        text=test_data['messages'],
-        batch_size=64,
-    )
-    return list(results)
+
+    outputs = []
+    for i in range(0, len(test_data), batch_size):
+        batch = [test_data[j] for j in range(i, min(i+batch_size, len(test_data)))]
+        inputs = collate_fn_inf(batch).to(model.device)
+
+        with torch.no_grad():
+            generated = model.generate(
+                **inputs,
+                max_new_tokens=max_new_tokens,
+                pad_token_id=processor.tokenizer.eos_token_id,
+                do_sample=False,
+            )
+        input_len = inputs['input_ids'].shape[1]
+        outputs.extend(processor.tokenizer.batch_decode(generated[:, input_len:], skip_special_tokens=True))
+    return outputs
