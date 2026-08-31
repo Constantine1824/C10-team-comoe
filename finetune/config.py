@@ -31,7 +31,7 @@ peft_config = LoraConfig(
     bias='none',
     target_modules='all-linear',
     task_type='CAUSAL_LM',
-    modules_to_save=['lm_head', 'embed_tokens'],
+    #modules_to_save=['lm_head', 'embed_tokens'],
 )
 
 sft_config = SFTConfig(
