@@ -36,13 +36,13 @@ peft_config = LoraConfig(
 
 sft_config = SFTConfig(
     output_dir='/checkpoints/',
-    num_train_epochs=5,
+    num_train_epochs=15,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=4,
     gradient_accumulation_steps=4,
     gradient_checkpointing=True,
     optim='adamw_torch_fused',
-    logging_steps=50,
+    logging_steps=4,
     save_strategy='epoch',
     learning_rate=2e-4,
     bf16=True,
