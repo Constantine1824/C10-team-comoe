@@ -23,7 +23,7 @@ def format_train_data(data: DataFrame) -> dict[str, str]:
         },
         {
             'role': 'user',
-            'content': f"Context:{data['context']}\nQuestion:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_settings']} \n Population: {data['population']}"
+            'content': f"Context:{data['context']}\nQuestion:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_setting']} \n Population: {data['population']}"
         },
         {
             'role': 'assistant',
@@ -41,7 +41,7 @@ def format_test_data(data: DataFrame) -> dict[str, str]:
         },
         {
             'role': 'user',
-            'content': f"Question:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_settings']} \n Population: {data['population']}"
+            'content': f"Question:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_setting']} \n Population: {data['population']}"
         }
     ]
     return formatted
