@@ -1,8 +1,17 @@
 import torch
 from trl import SFTTrainer
-from .config import peft_config, sft_config, processor, MODEL
-from transformers import pipeline
+from .config import peft_config, sft_config, MODEL_ID, MODEL_KWARGS
+from transformers import AutoProcessor, AutoModelForImageTextToText
 from datasets import Dataset
+
+
+def load_model(model_path:str, model_kwargs:dict):
+    processor = AutoProcessor.from_pretrained(model_path)
+    processor.tokenizer.padding_side = 'right'
+    model = AutoModelForImageTextToText.from_pretrained(model_path, **model_kwargs)
+    return model, processor
+
+model, processor = load_model(MODEL_ID, MODEL_KWARGS)
 
 def collate_fn(data:list[dict[str, str]]):
     texts = []
@@ -24,10 +33,9 @@ def collate_fn_inf(data:list[dict[str, str]]):
     ]
     return processor(text=texts, return_tensors='pt', padding=True)
 
-
-def finetune(data:Dataset):
+def finetune(data:Dataset, model):
     trainer = SFTTrainer(
-        model=MODEL,
+        model=model,
         train_dataset=data,
         data_collator=collate_fn,
         peft_config=peft_config,

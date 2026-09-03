@@ -20,10 +20,6 @@ MODEL_KWARGS['quantization_config'] = BitsAndBytesConfig(
     bnb_4bit_quant_type='nf4',
 )
 
-MODEL = AutoModelForImageTextToText.from_pretrained(MODEL_ID, **MODEL_KWARGS)
-processor = AutoProcessor.from_pretrained(MODEL_ID)
-processor.tokenizer.padding_side = 'right'
-
 peft_config = LoraConfig(
     lora_alpha=16,
     lora_dropout=0.05,
@@ -36,7 +32,7 @@ peft_config = LoraConfig(
 
 sft_config = SFTConfig(
     output_dir='/checkpoints/',
-    num_train_epochs=15,
+    num_train_epochs=20,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=4,
     gradient_accumulation_steps=4,
