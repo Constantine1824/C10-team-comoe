@@ -33,7 +33,7 @@ def collate_fn_inf(data:list[dict[str, str]]):
     ]
     return processor(text=texts, return_tensors='pt', padding=True)
 
-def finetune(data:Dataset, model):
+def finetune(data:Dataset):
     trainer = SFTTrainer(
         model=model,
         train_dataset=data,
