@@ -4,6 +4,8 @@ datasets
 huggingface_hub
 pandas
 peft
+scikit-learn
+sentence-transformers
 tensorboard
 torch
 transformers
