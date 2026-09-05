@@ -1,6 +1,10 @@
+accelerate
 bitsandbytes
 datasets
+huggingface_hub
+pandas
 peft
 tensorboard
+torch
 transformers
 trl

@@ -34,6 +34,7 @@ def format_train_data(data: DataFrame) -> dict[str, str]:
 
 def format_test_data(data: DataFrame) -> dict[str, str]:
     formatted = {}
+    context = data.get('context', '')
     formatted['messages'] = [
         {
             'role': 'system',
@@ -41,7 +42,7 @@ def format_test_data(data: DataFrame) -> dict[str, str]:
         },
         {
             'role': 'user',
-            'content': f"Question:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_setting']} \n Population: {data['population']}"
+            'content': f"Context:{context}\nQuestion:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_setting']} \n Population: {data['population']}"
         }
     ]
     return formatted

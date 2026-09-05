@@ -4,6 +4,8 @@ from .config import peft_config, sft_config, MODEL_ID, MODEL_KWARGS
 from transformers import AutoProcessor, AutoModelForImageTextToText
 from datasets import Dataset
 
+model = None
+processor = None
 
 def load_model(model_path:str, model_kwargs:dict):
     processor = AutoProcessor.from_pretrained(model_path)
@@ -11,9 +13,14 @@ def load_model(model_path:str, model_kwargs:dict):
     model = AutoModelForImageTextToText.from_pretrained(model_path, **model_kwargs)
     return model, processor
 
-model, processor = load_model(MODEL_ID, MODEL_KWARGS)
+def get_model_and_processor():
+    global model, processor
+    if model is None or processor is None:
+        model, processor = load_model(MODEL_ID, MODEL_KWARGS)
+    return model, processor
 
 def collate_fn(data:list[dict[str, str]]):
+    _, processor = get_model_and_processor()
     texts = []
     for item in data:
         texts.append(processor.apply_chat_template(item['messages'],
@@ -25,6 +32,7 @@ def collate_fn(data:list[dict[str, str]]):
     return batch
 
 def collate_fn_inf(data:list[dict[str, str]]):
+    _, processor = get_model_and_processor()
     texts = [
         processor.apply_chat_template(item['messages'],
             add_generation_prompt=True,
@@ -34,6 +42,7 @@ def collate_fn_inf(data:list[dict[str, str]]):
     return processor(text=texts, return_tensors='pt', padding=True)
 
 def finetune(data:Dataset):
+    model, _ = get_model_and_processor()
     trainer = SFTTrainer(
         model=model,
         train_dataset=data,
@@ -46,6 +55,7 @@ def finetune(data:Dataset):
 
 def evaluate(trainer,test_data, batch_size=8, max_new_tokens=256):
     model = trainer.model
+    _, processor = get_model_and_processor()
     model.eval()
     processor.tokenizer.padding_side = 'left'
 

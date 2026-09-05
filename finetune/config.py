@@ -1,24 +1,27 @@
 import torch
-from transformers import AutoProcessor, AutoModelForImageTextToText, BitsAndBytesConfig
+from transformers import BitsAndBytesConfig
 from peft import LoraConfig
 from trl import SFTConfig
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+use_cuda = torch.cuda.is_available()
+compute_dtype = torch.bfloat16 if use_cuda else torch.float32
 
 MODEL_ID = "google/medgemma-4b-it"
 
 MODEL_KWARGS = {
     'attn_implementation': 'eager',
-    'torch_dtype': torch.bfloat16,
-    'device_map': device,
+    'torch_dtype': compute_dtype,
+    'device_map': 'auto',
 }
 
-MODEL_KWARGS['quantization_config'] = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_compute_dtype=MODEL_KWARGS['torch_dtype'],
-    bnb_4bit_use_double_quant=True,
-    bnb_4bit_quant_type='nf4',
-)
+if use_cuda:
+    MODEL_KWARGS['quantization_config'] = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_compute_dtype=MODEL_KWARGS['torch_dtype'],
+        bnb_4bit_use_double_quant=True,
+        bnb_4bit_quant_type='nf4',
+    )
 
 peft_config = LoraConfig(
     lora_alpha=16,
@@ -31,8 +34,8 @@ peft_config = LoraConfig(
 )
 
 sft_config = SFTConfig(
-    output_dir='/checkpoints/',
-    num_train_epochs=20,
+    output_dir='checkpoints',
+    num_train_epochs=3,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=4,
     gradient_accumulation_steps=4,
@@ -41,7 +44,7 @@ sft_config = SFTConfig(
     logging_steps=4,
     save_strategy='epoch',
     learning_rate=2e-4,
-    bf16=True,
+    bf16=use_cuda,
     max_grad_norm=0.3,
     lr_scheduler_type='linear',
     dataset_kwargs={'skip_prepare_dataset': True},
