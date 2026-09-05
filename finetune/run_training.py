@@ -1,4 +1,10 @@
-"""Train the adapter and write a grounded benchmark submission."""
+"""Train the adapter and write a grounded benchmark submission.
+
+Training pairs use the gold document's chunks as context; test questions get
+context from the hybrid RAG retriever (dense + lexical, RRF-fused). Both go
+through the same formatter so the model sees identically shaped context at
+train and inference time.
+"""
 
 from __future__ import annotations
 
@@ -8,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 from datasets import Dataset
 
-from rag.retrieval import load_documents, retrieve_document
+from rag.retriever import HybridRetriever
 from utils.format import format_test_data, format_train_data
 from .trainer import evaluate, finetune
 
@@ -16,19 +22,26 @@ from .trainer import evaluate, finetune
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def prepare_data() -> tuple[Dataset, Dataset, pd.DataFrame]:
+def prepare_data(
+    retriever: HybridRetriever, retrieval_k: int = 3
+) -> tuple[Dataset, Dataset, pd.DataFrame]:
     train_frame = pd.read_csv(ROOT / "data" / "train_qa.csv").fillna("")
-    documents = pd.read_csv(ROOT / "data" / "documents.csv").fillna("")
-    train_frame = train_frame.merge(
-        documents[["document_id", "text"]], on="document_id", how="left"
-    ).rename(columns={"text": "context"})
+    # gold context: the labeled document, chunked and formatted exactly like
+    # retrieved context will be at inference time
+    train_frame["context"] = [
+        retriever.context_for_document(document_id)
+        for document_id in train_frame["document_id"]
+    ]
 
     test_frame = pd.read_csv(ROOT / "data" / "test_questions.csv").fillna("")
-    source_documents = load_documents()
     test_frame["context"] = [
-        retrieve_document(
-            row["question"], row["topic"], row["care_setting"], row["population"], source_documents
-        )["text"]
+        retriever.retrieve_context(
+            row["question"],
+            row["topic"],
+            row["care_setting"],
+            row["population"],
+            k=retrieval_k,
+        )
         for _, row in test_frame.iterrows()
     ]
 
@@ -45,7 +58,8 @@ def clean_answer(answer: str) -> str:
 
 
 def main(output_path: str | Path = ROOT / "submissions" / "finetuned_submission.csv") -> None:
-    train_data, test_data, test_frame = prepare_data()
+    retriever = HybridRetriever()
+    train_data, test_data, test_frame = prepare_data(retriever)
     trainer = finetune(train_data)
     answers = [clean_answer(answer) for answer in evaluate(trainer, test_data, batch_size=8)]
     if len(answers) != len(test_frame):

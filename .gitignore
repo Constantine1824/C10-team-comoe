@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# RAG index artifacts
+rag/index/
+checkpoints/
+__pycache__/
