@@ -1,10 +1,10 @@
 import torch
 from trl import SFTTrainer
-from config import peft_config, sft_config, MODEL_ID, MODEL_KWARGS
+from .config import peft_config, sft_config, MODEL_ID, MODEL_KWARGS
 from transformers import AutoProcessor, AutoModelForImageTextToText
 from datasets import Dataset
 from pandas import DataFrame
-from utils.format import format_train_data, format_test_data
+from .format import format_train_data, format_test_data
 from rag import HybridRetriever
 
 model = None
