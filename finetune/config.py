@@ -7,7 +7,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 use_cuda = torch.cuda.is_available()
 compute_dtype = torch.bfloat16 if use_cuda else torch.float32
 
-MODEL_ID = "google/medgemma-4b-it"
+MODEL_ID = "google/medgemma-27b-it"
 
 MODEL_KWARGS = {
     'attn_implementation': 'eager',
