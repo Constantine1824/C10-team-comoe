@@ -8,7 +8,7 @@ re-embedding the corpus. Run from the repo root:
 
 from pathlib import Path
 
-from .retriever import HybridRetriever
+from retriever import HybridRetriever
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INDEX_DIR = ROOT / "rag" / "index"

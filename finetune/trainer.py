@@ -1,6 +1,6 @@
 import torch
 from trl import SFTTrainer
-from .config import peft_config, sft_config, MODEL_ID, MODEL_KWARGS
+from config import peft_config, sft_config, MODEL_ID, MODEL_KWARGS
 from transformers import AutoProcessor, AutoModelForImageTextToText
 from datasets import Dataset
 

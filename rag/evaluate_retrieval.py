@@ -15,7 +15,7 @@ from __future__ import annotations
 import pandas as pd
 from pathlib import Path
 
-from .retriever import HybridRetriever
+from retriever import HybridRetriever
 
 ROOT = Path(__file__).resolve().parents[1]
 METADATA_FIELDS = ("topic", "care_setting", "population")
