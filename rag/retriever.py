@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-from chunking import (
+from .chunking import (
     DEFAULT_MAX_CHARS,
     DEFAULT_OVERLAP_SENTENCES,
     chunk_documents,
