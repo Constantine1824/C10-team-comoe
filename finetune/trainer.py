@@ -5,7 +5,7 @@ from transformers import AutoProcessor, AutoModelForImageTextToText
 from datasets import Dataset
 from pandas import DataFrame
 from .format import format_train_data, format_test_data
-from rag import HybridRetriever
+from rag.retriever import HybridRetriever
 
 model = None
 processor = None
