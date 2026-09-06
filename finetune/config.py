@@ -7,7 +7,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 use_cuda = torch.cuda.is_available()
 compute_dtype = torch.bfloat16 if use_cuda else torch.float32
 
-MODEL_ID = "google/medgemma-4b-it"
+MODEL_ID = "google/medgemma-27b-it"
 
 MODEL_KWARGS = {
     'attn_implementation': 'eager',
@@ -35,7 +35,7 @@ peft_config = LoraConfig(
 
 sft_config = SFTConfig(
     output_dir='checkpoints',
-    num_train_epochs=3,
+    num_train_epochs=10,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=4,
     gradient_accumulation_steps=4,

@@ -6,8 +6,6 @@ re-embedding the corpus. Run from the repo root:
     python -m rag.build_index
 """
 
-from __future__ import annotations
-
 from pathlib import Path
 
 from .retriever import HybridRetriever
