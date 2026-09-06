@@ -3,6 +3,9 @@ from trl import SFTTrainer
 from config import peft_config, sft_config, MODEL_ID, MODEL_KWARGS
 from transformers import AutoProcessor, AutoModelForImageTextToText
 from datasets import Dataset
+from pandas import DataFrame
+from utils.format import format_train_data, format_test_data
+from rag import HybridRetriever
 
 model = None
 processor = None
@@ -18,6 +21,32 @@ def get_model_and_processor():
     if model is None or processor is None:
         model, processor = load_model(MODEL_ID, MODEL_KWARGS)
     return model, processor
+
+def prepare_data(
+    train_set: DataFrame,
+    test_set: DataFrame,
+    retriever: HybridRetriever,
+    retrieval_k: int = 3
+) -> tuple[Dataset, Dataset, DataFrame]:
+
+    train_set["context"] = [
+        retriever.context_for_document(document_id)
+        for document_id in train_set["document_id"]
+    ]
+    test_set["context"] = [
+        retriever.retrieve_context(
+            row["question"],
+            row["topic"],
+            row["care_setting"],
+            row["population"],
+            k=retrieval_k,
+        )
+        for _, row in test_set.iterrows()
+    ]
+
+    train_data = Dataset.from_pandas(train_set).map(format_train_data)
+    test_data = Dataset.from_pandas(test_set).map(format_test_data)
+    return train_data, test_data, test_set
 
 def collate_fn(data:list[dict[str, str]]):
     _, processor = get_model_and_processor()

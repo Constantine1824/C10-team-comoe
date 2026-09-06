@@ -1,4 +1,3 @@
-from typing import Any
 from pandas import DataFrame
 
 SYSTEM_PROMPT = """
@@ -12,8 +11,6 @@ Never advise starting, stopping, or changing a prescription drug, or give a spec
 End personalized answers with: "General information only — confirm with a licensed healthcare professional before acting on it."
 """
 
-
-
 def format_train_data(data: DataFrame) -> dict[str, str]:
     formatted = {}
     formatted['messages'] = [
@@ -23,7 +20,7 @@ def format_train_data(data: DataFrame) -> dict[str, str]:
         },
         {
             'role': 'user',
-            'content': f"Context:{data['context']}\nQuestion:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_setting']} \n Population: {data['population']}"
+            'content': f"Context:{data['context']}\nQuestion:{data['question']}"
         },
         {
             'role': 'assistant',
@@ -34,7 +31,6 @@ def format_train_data(data: DataFrame) -> dict[str, str]:
 
 def format_test_data(data: DataFrame) -> dict[str, str]:
     formatted = {}
-    context = data.get('context', '')
     formatted['messages'] = [
         {
             'role': 'system',
@@ -42,7 +38,7 @@ def format_test_data(data: DataFrame) -> dict[str, str]:
         },
         {
             'role': 'user',
-            'content': f"Context:{context}\nQuestion:{data['question']}\nTopic: {data['topic']}\nCare: {data['care_setting']} \n Population: {data['population']}"
+            'content': f"Context:{data['context']}\nQuestion:{data['question']}"
         }
     ]
     return formatted
