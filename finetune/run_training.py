@@ -16,7 +16,7 @@ from datasets import Dataset
 
 from rag.retriever import HybridRetriever
 from utils.format import format_test_data, format_train_data
-from .trainer import evaluate, finetune
+from trainer import evaluate, finetune
 
 
 ROOT = Path(__file__).resolve().parents[1]

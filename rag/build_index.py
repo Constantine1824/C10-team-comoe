@@ -6,11 +6,9 @@ re-embedding the corpus. Run from the repo root:
     python -m rag.build_index
 """
 
-from __future__ import annotations
-
 from pathlib import Path
 
-from .retriever import HybridRetriever
+from retriever import HybridRetriever
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INDEX_DIR = ROOT / "rag" / "index"

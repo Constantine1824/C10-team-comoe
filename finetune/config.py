@@ -15,8 +15,7 @@ MODEL_KWARGS = {
     'device_map': 'auto',
 }
 
-if use_cuda:
-    MODEL_KWARGS['quantization_config'] = BitsAndBytesConfig(
+MODEL_KWARGS['quantization_config'] = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_compute_dtype=MODEL_KWARGS['torch_dtype'],
         bnb_4bit_use_double_quant=True,
@@ -35,7 +34,7 @@ peft_config = LoraConfig(
 
 sft_config = SFTConfig(
     output_dir='checkpoints',
-    num_train_epochs=3,
+    num_train_epochs=15,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=4,
     gradient_accumulation_steps=4,
