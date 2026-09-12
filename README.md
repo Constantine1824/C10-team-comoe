@@ -59,12 +59,13 @@ Outputs are written to `submissions/retrieval_baseline.csv` and, after training,
 
 ## Repository Structure
 
-- `data/`: source documents, train/test questions, metadata, and sample submissions.
-- `chunking/`: document chunking pipeline and serialized chunk export.
-- `rag/`: chunking, embeddings, vector storage, retrieval, baseline generation, and retrieval evaluation.
-- `finetune/`: model configuration, prompt preparation, LoRA training, and generation.
-- `utils/`: shared safety prompt and chat-formatting helpers.
-- `submissions/`: checked-in and generated submission files.
+- 📁`data/`: source documents, train/test questions, metadata, and sample submissions.
+- 📁`chunking/`: document chunking pipeline and serialized chunk export.
+-📁 `rag/`: chunking, embeddings, vector storage, retrieval, baseline generation, and retrieval evaluation.
+- 📁`finetune/`: model configuration, prompt preparation, LoRA training, and generation.
+- 📁`utils/`: shared safety prompt and chat-formatting helpers.
+- 📁`submissions/`: checked-in and generated submission files.
+- 📁 `docs/`: problem_statement.pdf, data_card.pdf, impact_statement_card.pdf, stakeholder_engagement.pdf
 
 ## Appendix
 
@@ -84,4 +85,5 @@ Outputs are written to `submissions/retrieval_baseline.csv` and, after training,
 
 ### Acknowledgement
 
-We acknowledge the Hugging Face, Google MedGemma, Sentence Transformers, PyTorch, and scikit-learn communities for the open-source models and tools used in this project. The dataset metadata labels the factsheet corpus CC0-1.0 and the benchmark metadata CC-BY-4.0; please retain the applicable attribution when redistributing benchmark materials.
+This project was developed as part of the AI Saturdays Lagos Machine Learning Program, focusing on applying the concept learned to real-world sustainability problems.
+Special thanks to our mentor and cohort peers for their guidance and contributions
