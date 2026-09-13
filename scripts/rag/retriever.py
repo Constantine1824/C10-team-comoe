@@ -41,7 +41,7 @@ class HybridRetriever:
         overlap_sentences: int = DEFAULT_OVERLAP_SENTENCES,
         index_dir: str | None = None,
     ) -> None:
-        self.documents = documents if documents is not None else load_documents()
+        self.documents = documents if documents is not None else load_documents('../data/documents.csv')
 
         self.embedder = embedder if embedder is not None else load_embedder()
         if index_dir and (Path(index_dir) / "chunks.json").exists():
