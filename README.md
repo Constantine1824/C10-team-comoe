@@ -1,4 +1,4 @@
-# TRI-AI-SLM: Safety-Aware Medical Question Answering
+# TRI-AI-SLM: Domain Specific Small Language Model for medical advice
 
 TRI-AI-SLM is an educational medical question-answering system. It retrieves supporting public-health guidance, uses metadata to preserve context, and generates concise answers with safety instructions. It is not a clinical tool and does not replace a licensed clinician.
 
