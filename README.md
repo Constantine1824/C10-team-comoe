@@ -14,7 +14,7 @@ The active implementation is under `scripts/`. Documents are loaded from CSV and
 
 For each question, retrieval first restricts candidates by exact topic, care setting, and population, then falls back to topic matches and finally the full corpus. The RAG retriever combines `BAAI/bge-small-en-v1.5` dense embeddings with unigram/bigram TF-IDF using reciprocal-rank fusion. A TF-IDF embedder is available when the dense model cannot be loaded. Training uses the gold document as context; inference uses the top three retrieved chunks, with the same prompt formatting in both paths.
 
-The Kaggle notebook (`scripts/kaggle_main.ipynb`) logs into Hugging Face, loads the repository, prepares train/test prompts, fine-tunes `google/medgemma-1.5-4b-it` with PEFT LoRA, generates 11 answers, removes a leading `Answer:` label, and writes `/kaggle/working/submission.csv`. The checked-in LoRA settings are rank 16, alpha 16, dropout 0.05, all linear target modules, no bias adaptation, 4-bit NF4 quantization, learning rate `2e-4`, batch size 4, gradient accumulation 4, gradient checkpointing, linear scheduling, and 20 epochs. No automated hyperparameter sweep is implemented; these are fixed experimental settings.
+The Kaggle notebook (`scripts/kaggle_main.ipynb`) logs into Hugging Face, loads the repository, prepares train/test prompts, fine-tunes `google/medgemma-1.5-4b-it` with PEFT LoRA, generates 11 answers, removes a leading `Answer:` label, and writes `/kaggle/working/submission.csv`. The checked-in LoRA settings are rank 16, alpha 16, dropout 0.05, all linear target modules, no bias adaptation, 4-bit NF4 quantization, learning rate `2e-4`, batch size 4, gradient accumulation 4, gradient checkpointing, linear scheduling, and 20 epochs.
 
 ## Evaluation
 
